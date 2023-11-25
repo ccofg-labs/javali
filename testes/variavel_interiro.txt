@@ -1,0 +1,2 @@
+inteiro a = 2;
+inteiro b = a;
