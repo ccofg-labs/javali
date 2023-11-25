@@ -5,7 +5,7 @@ program
     ;
 
 statement
-    : '{'statement*'}'
+    :  ABRE_CHAVE statement* FECHA_CHAVE
     | tipoPrimitivo
     ;
 
@@ -14,8 +14,18 @@ tipoPrimitivo
     | REAL IDENTIFICADOR IGUAL (IDENTIFICADOR | REAL_LITERAL)* PONTO_E_VIRGULA
     | CADEIA IDENTIFICADOR IGUAL (IDENTIFICADOR | CADEIA_LITERAL) PONTO_E_VIRGULA
     | LISTA_UNIFORME
-    | LISTA_DIVERSA
+    | LISTA_DIVERSA IDENTIFICADOR IGUAL matriz PONTO_E_VIRGULA
     | BOLEANA
+    ;
+matriz
+    : ABRE_CHAVE matrizEstrutura (VIRGULA matrizEstrutura)* FECHA_CHAVE ;
+matrizEstrutura
+    : matriz
+    | DIGITO_LITERAL
+    | REAL_LITERAL
+    | BOLEANA_LITERAL
+    | CADEIA_LITERAL
+    | IDENTIFICADOR
     ;
 
     WS: [ \n\t\r]+ -> skip;
