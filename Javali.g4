@@ -5,13 +5,11 @@ programa
     ;
 
 estrutura
-    :  ABRE_CHAVE estrutura* FECHA_CHAVE
+    : ABRE_CHAVE estrutura* FECHA_CHAVE
     | tipoPrimitivo
     | seEstrutura
     | LINHA_COMENTARIO
-    ;
-seEstrutura
-    : SE ABRE_PARENTESE condicaoBoleana FECHA_PARENTESE ENTAO ABRE_CHAVE estrutura FECHA_CHAVE (SENAO  ABRE_CHAVE estrutura FECHA_CHAVE)?
+    | atribuicao
     ;
 
 tipoPrimitivo
@@ -22,9 +20,21 @@ tipoPrimitivo
     | matrizDeclaracao
     | boleanaDeclaracao
     ;
-inteiroDeclaracao
-    : INT IDENTIFICADOR (IGUAL (IDENTIFICADOR |  DIGITO_LITERAL) )?
+
+atribuicao
+    : IDENTIFICADOR IGUAL (SINAL? DIGITO_LITERAL | IDENTIFICADOR) PONTO_E_VIRGULA
     ;
+seEstrutura
+    : SE ABRE_PARENTESE condicaoBoleana FECHA_PARENTESE ENTAO ABRE_CHAVE estrutura FECHA_CHAVE (SENAO  ABRE_CHAVE estrutura FECHA_CHAVE)?
+    ;
+
+
+inteiroDeclaracao
+    : INT IDENTIFICADOR (IGUAL (SINAL? DIGITO_LITERAL) )? PONTO_E_VIRGULA
+    ;
+
+SINAL : SOMA | SUBTRACAO;
+
 realDeclaracao
     : REAL IDENTIFICADOR (IGUAL IDENTIFICADOR | IGUAL REAL_LITERAL)?
     ;
