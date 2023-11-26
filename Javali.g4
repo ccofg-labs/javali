@@ -1,24 +1,60 @@
 grammar Javali;
 
-program
-    : statement+ EOF
+programa
+    : estrutura*
     ;
 
-statement
-    :  ABRE_CHAVE statement* FECHA_CHAVE
+estrutura
+    :  ABRE_CHAVE estrutura* FECHA_CHAVE
     | tipoPrimitivo
+    | COMENTARIO
+    | LINHA_COMENTARIO
     ;
 
 tipoPrimitivo
-    : INT IDENTIFICADOR IGUAL (IDENTIFICADOR | DIGITO_LITERAL)* PONTO_E_VIRGULA
-    | REAL IDENTIFICADOR IGUAL (IDENTIFICADOR | REAL_LITERAL)* PONTO_E_VIRGULA
-    | CADEIA IDENTIFICADOR IGUAL (IDENTIFICADOR | CADEIA_LITERAL)* PONTO_E_VIRGULA
-    | LISTA_UNIFORME IDENTIFICADOR IGUAL (lista)* PONTO_E_VIRGULA
-    | LISTA_DIVERSA IDENTIFICADOR IGUAL (matrizExpressao)* PONTO_E_VIRGULA
-    | BOLEANA
+    : inteiroDeclaracao
+    | realDeclaracao
+    | cadeiaDeclaracao
+    | listaDeclaracao
+    | matrizDeclaracao
+    | boleanaDeclaracao
     ;
+inteiroDeclaracao
+    : INT IDENTIFICADOR IGUAL expressaoAritmetricaInteiro PONTO_E_VIRGULA
+    | IDENTIFICADOR IGUAL expressaoAritmetricaInteiro PONTO_E_VIRGULA
+    ;
+
+expressaoAritmetricaInteiro:
+    | IDENTIFICADOR
+    | SOMA IDENTIFICADOR
+    | SUBTRACAO IDENTIFICADOR
+    | IDENTIFICADOR MULTIPLICACAO IDENTIFICADOR
+    | IDENTIFICADOR DIVISAO IDENTIFICADOR
+    ;
+expressaoAritmetrica:
+    |
+    ;
+realDeclaracao
+    : REAL IDENTIFICADOR IGUAL (IDENTIFICADOR | REAL_LITERAL)* PONTO_E_VIRGULA
+    ;
+cadeiaDeclaracao
+    : CADEIA IDENTIFICADOR IGUAL (IDENTIFICADOR | CADEIA_LITERAL)* PONTO_E_VIRGULA
+    ;
+listaDeclaracao
+    : LISTA_UNIFORME IDENTIFICADOR IGUAL (lista)* PONTO_E_VIRGULA
+    ;
+matrizDeclaracao
+    : LISTA_DIVERSA IDENTIFICADOR IGUAL (matrizExpressao)* PONTO_E_VIRGULA
+    ;
+
+boleanaDeclaracao
+    : BOLEANA IDENTIFICADOR IGUAL PONTO_E_VIRGULA
+    ;
+
+
 matrizExpressao
-    : ABRE_CHAVE matrizEstrutura (VIRGULA matrizEstrutura)* FECHA_CHAVE ;
+    : ABRE_CHAVE matrizEstrutura (VIRGULA matrizEstrutura)* FECHA_CHAVE
+    ;
 matrizEstrutura
     : matrizExpressao
     | DIGITO_LITERAL
@@ -35,7 +71,17 @@ lista
     | matrizExpressao
     | IDENTIFICADOR
     ;
-    WS: [ \n\t\r]+ -> skip;
+    WS
+        : [ \t\r\n]+ -> channel(HIDDEN)
+    ;
+
+    COMENTARIO
+        : '/*' .*? '*/' -> skip
+    ;
+
+    LINHA_COMENTARIO
+        : '//' ~[\r\n]* -> skip
+    ;
 /*
 * Lexer Rules
 */
@@ -98,6 +144,7 @@ CADEIA_LITERAL: '"'(~["\\\r\n])* '"';
 /*
 *   Idenficadores
 */
+
 IDENTIFICADOR : [A-Za-z][0-9A-Za-z]*;
 fragment DIGITO: [0-9];
 fragment TRUE: 'true';
