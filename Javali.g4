@@ -7,50 +7,47 @@ programa
 estrutura
     :  ABRE_CHAVE estrutura* FECHA_CHAVE
     | tipoPrimitivo
-    | COMENTARIO
+    | seEstrutura
     | LINHA_COMENTARIO
+    ;
+seEstrutura
+    : SE ABRE_PARENTESE condicaoBoleana FECHA_PARENTESE ENTAO ABRE_CHAVE estrutura FECHA_CHAVE (SENAO  ABRE_CHAVE estrutura FECHA_CHAVE)?
     ;
 
 tipoPrimitivo
-    : inteiroDeclaracao
-    | realDeclaracao
+    : inteiroDeclaracao PONTO_E_VIRGULA
+    | realDeclaracao PONTO_E_VIRGULA
     | cadeiaDeclaracao
     | listaDeclaracao
     | matrizDeclaracao
     | boleanaDeclaracao
     ;
 inteiroDeclaracao
-    : INT IDENTIFICADOR IGUAL expressaoAritmetricaInteiro PONTO_E_VIRGULA
-    | IDENTIFICADOR IGUAL expressaoAritmetricaInteiro PONTO_E_VIRGULA
-    ;
-
-expressaoAritmetricaInteiro:
-    | IDENTIFICADOR
-    | SOMA IDENTIFICADOR
-    | SUBTRACAO IDENTIFICADOR
-    | IDENTIFICADOR MULTIPLICACAO IDENTIFICADOR
-    | IDENTIFICADOR DIVISAO IDENTIFICADOR
-    ;
-expressaoAritmetrica:
-    |
+    : INT IDENTIFICADOR (IGUAL (IDENTIFICADOR |  DIGITO_LITERAL) )?
     ;
 realDeclaracao
-    : REAL IDENTIFICADOR IGUAL (IDENTIFICADOR | REAL_LITERAL)* PONTO_E_VIRGULA
+    : REAL IDENTIFICADOR (IGUAL IDENTIFICADOR | IGUAL REAL_LITERAL)?
     ;
 cadeiaDeclaracao
-    : CADEIA IDENTIFICADOR IGUAL (IDENTIFICADOR | CADEIA_LITERAL)* PONTO_E_VIRGULA
+    : CADEIA IDENTIFICADOR (IGUAL IDENTIFICADOR | IGUAL CADEIA_LITERAL)? PONTO_E_VIRGULA
     ;
 listaDeclaracao
-    : LISTA_UNIFORME IDENTIFICADOR IGUAL (lista)* PONTO_E_VIRGULA
+    : LISTA_UNIFORME IDENTIFICADOR (IGUAL lista)? PONTO_E_VIRGULA
     ;
 matrizDeclaracao
-    : LISTA_DIVERSA IDENTIFICADOR IGUAL (matrizExpressao)* PONTO_E_VIRGULA
+    : LISTA_DIVERSA IDENTIFICADOR (IGUAL matrizExpressao)? PONTO_E_VIRGULA
     ;
 
 boleanaDeclaracao
-    : BOLEANA IDENTIFICADOR IGUAL PONTO_E_VIRGULA
+    : BOLEANA IDENTIFICADOR (IGUAL condicaoBoleana)?
     ;
 
+condicaoBoleana
+    : ABRE_PARENTESE condicaoBoleana FECHA_PARENTESE
+    | BOLEANA_LITERAL
+    | NEGACAO_LOGICA? IDENTIFICADOR (E_LOGICO | OU_LOGICO) IDENTIFICADOR
+    | (IDENTIFICADOR | REAL_LITERAL | DIGITO_LITERAL) (IGUALDADE | MAIOR_IGUAL | MENOR_IGUAL | DIFERENTE) (IDENTIFICADOR | REAL_LITERAL | DIGITO_LITERAL)
+    ;
 
 matrizExpressao
     : ABRE_CHAVE matrizEstrutura (VIRGULA matrizEstrutura)* FECHA_CHAVE
@@ -114,6 +111,7 @@ CADEIA_LITERAL: '"'(~["\\\r\n])* '"';
 */
 
     IGUAL: '=';
+    IGUALDADE : '==';
     DIFERENTE: '!=';
     MENOR_IGUAL: '<=';
     MAIOR_IGUAL: '>=';
@@ -149,3 +147,11 @@ IDENTIFICADOR : [A-Za-z][0-9A-Za-z]*;
 fragment DIGITO: [0-9];
 fragment TRUE: 'true';
 fragment FALSE: 'false';
+
+/*
+* Condionais
+*/
+
+SE: 'se';
+SENAO: 'senao';
+ENTAO: 'entao';

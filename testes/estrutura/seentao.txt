@@ -1,0 +1,10 @@
+se (a == a) entao{
+
+
+}
+
+se(a == "1") entao{
+    a = 1;
+}senao{
+    a = 2;
+}
