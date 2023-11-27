@@ -1,2 +1,4 @@
 real a = 1.1;
 real b = a;
+
+print a + b
