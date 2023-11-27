@@ -31,14 +31,21 @@ public class JavaliBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSeEstrutura(JavaliParser.SeEstruturaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTipoPrimitivo(JavaliParser.TipoPrimitivoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTipoPrimitivo(JavaliParser.TipoPrimitivoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAtribuicao(JavaliParser.AtribuicaoContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSeEstrutura(JavaliParser.SeEstruturaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

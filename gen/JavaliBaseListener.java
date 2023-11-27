@@ -40,18 +40,6 @@ public class JavaliBaseListener implements JavaliListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSeEstrutura(JavaliParser.SeEstruturaContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSeEstrutura(JavaliParser.SeEstruturaContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterTipoPrimitivo(JavaliParser.TipoPrimitivoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,6 +47,30 @@ public class JavaliBaseListener implements JavaliListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTipoPrimitivo(JavaliParser.TipoPrimitivoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAtribuicao(JavaliParser.AtribuicaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAtribuicao(JavaliParser.AtribuicaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSeEstrutura(JavaliParser.SeEstruturaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSeEstrutura(JavaliParser.SeEstruturaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

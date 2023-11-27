@@ -22,17 +22,23 @@ public interface JavaliVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEstrutura(JavaliParser.EstruturaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JavaliParser#seEstrutura}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSeEstrutura(JavaliParser.SeEstruturaContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link JavaliParser#tipoPrimitivo}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTipoPrimitivo(JavaliParser.TipoPrimitivoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaliParser#atribuicao}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAtribuicao(JavaliParser.AtribuicaoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaliParser#seEstrutura}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSeEstrutura(JavaliParser.SeEstruturaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JavaliParser#inteiroDeclaracao}.
 	 * @param ctx the parse tree

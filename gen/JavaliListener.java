@@ -27,16 +27,6 @@ public interface JavaliListener extends ParseTreeListener {
 	 */
 	void exitEstrutura(JavaliParser.EstruturaContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JavaliParser#seEstrutura}.
-	 * @param ctx the parse tree
-	 */
-	void enterSeEstrutura(JavaliParser.SeEstruturaContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JavaliParser#seEstrutura}.
-	 * @param ctx the parse tree
-	 */
-	void exitSeEstrutura(JavaliParser.SeEstruturaContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link JavaliParser#tipoPrimitivo}.
 	 * @param ctx the parse tree
 	 */
@@ -46,6 +36,26 @@ public interface JavaliListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTipoPrimitivo(JavaliParser.TipoPrimitivoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaliParser#atribuicao}.
+	 * @param ctx the parse tree
+	 */
+	void enterAtribuicao(JavaliParser.AtribuicaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaliParser#atribuicao}.
+	 * @param ctx the parse tree
+	 */
+	void exitAtribuicao(JavaliParser.AtribuicaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaliParser#seEstrutura}.
+	 * @param ctx the parse tree
+	 */
+	void enterSeEstrutura(JavaliParser.SeEstruturaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaliParser#seEstrutura}.
+	 * @param ctx the parse tree
+	 */
+	void exitSeEstrutura(JavaliParser.SeEstruturaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaliParser#inteiroDeclaracao}.
 	 * @param ctx the parse tree
