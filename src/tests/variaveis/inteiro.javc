@@ -1,0 +1,7 @@
+inteiro a = 1;
+inteiro a = 1 - 1;
+inteiro a = (1 * 1);
+inteiro a = (a + a);
+inteiro a = (a);
+inteiro a = (a + 1 + a);
+inteiro a = ( (a + 1) - a + (a / 2 + (a) ) );

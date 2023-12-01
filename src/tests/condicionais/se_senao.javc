@@ -1,0 +1,8 @@
+se x > 0 entao {
+    y = 15;
+    mensagem = "X é positivo!";
+} senao {
+    mensagem = "X não é positivo.";
+}
+
+// Comentário: Isso é um comentário.

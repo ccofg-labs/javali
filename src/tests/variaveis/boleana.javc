@@ -1,0 +1,10 @@
+boolean a = true;
+boolean a = false;
+a = falso; //variavel chamada falso
+boolean b = a >= b;
+boolean b = a <= b;
+boolean b = a > b;
+boolean b = a < b;
+boolean b = a == b;
+boolean b = a != b;
+boolean teste = a and b;
