@@ -1,4 +1,0 @@
-matriz aluno(cadeia nome,inteiro idade);
-    matriz dado = {nome,idade};
-    retornar dado;
-}

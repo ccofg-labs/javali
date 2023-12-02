@@ -1,0 +1,18 @@
+void func vazio(){
+    real a = 1.2;
+}
+integer func vazio(){
+    boolean a = true;
+}
+real func vazio(){
+    list a = [1,2,];
+}
+string func vazio(){
+    string nadinha = "V4zio";
+}
+boolean func eVerdade(){
+    a = 1 + 1;
+}
+list func frutas(){
+
+}

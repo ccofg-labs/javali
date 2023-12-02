@@ -1,0 +1,4 @@
+integer* a = &a;
+boolean* a = &a;
+real* a = &a;
+list* a = &a;
