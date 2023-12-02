@@ -7,6 +7,32 @@ statement
 varibleDeclarationStatement
     : integerDeclationStatement
     | realDeclarationStatement
+    | booleanDeclarationStatement
+    ;
+/* variavel boleana */
+booleanDeclarationStatement
+    : VAR_BOOLEAN VARIABLE EQUAL booleanExpression
+    | VARIABLE EQUAL booleanExpression
+    ;
+booleanExpression
+    : OPEN_PARENTHESES booleanExpression CLOSE_PARENTHESES
+    | OP_NOT booleanExpression
+    | booleanExpression (logicOperator | attributeOperator ) booleanExpression
+    | BOLEANA_LITERAL
+    | VARIABLE
+    ;
+attributeOperator
+    : OP_LESS_THAN
+    | OP_GREATER_THAN
+    | OP_LESSEQUAL
+    | OP_GREATER_EQUAL
+    | OP_EQUAL_TO
+    | OP_NOT_EQUAL_TO
+    ;
+logicOperator
+    : OP_AND
+    | OP_OR
+    | OP_NOT
     ;
 /* varivel real */
 realDeclarationStatement
@@ -78,20 +104,20 @@ arithmeticOperator
 */
 
     EQUAL: '=';
-    LESS_THAN : '<';
-    GREATER_THAN : '>';
-    LESSEQUAL : '<=';
-    GREATEREQUAL: '>=';
-    EQUALTO : '==';
-    NOTEQUALTO: '!=';
+    OP_LESS_THAN : '<';
+    OP_GREATER_THAN : '>';
+    OP_LESSEQUAL : '<=';
+    OP_GREATER_EQUAL: '>=';
+    OP_EQUAL_TO : '==';
+    OP_NOT_EQUAL_TO: '!=';
 
 /*
 * Operadores Logico
 */
 
-    AND: 'and';
-    OR: 'or';
-    NOT: 'not';
+    OP_AND: 'and';
+    OP_OR: 'or';
+    OP_NOT: 'not';
 
 /*
 * Delimitadores

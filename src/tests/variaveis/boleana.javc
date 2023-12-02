@@ -8,3 +8,5 @@ boolean b = a < b;
 boolean b = a == b;
 boolean b = a != b;
 boolean teste = a and b;
+boolean teste = a and b or a;
+boolean teste = (a and b) or a;
