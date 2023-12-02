@@ -8,7 +8,42 @@ varibleDeclarationStatement
     : integerDeclationStatement
     | realDeclarationStatement
     | booleanDeclarationStatement
+    | listDeclarationStatement
+    | stringDeclarationStatement
     ;
+/* variavel string */
+stringDeclarationStatement
+    : VAR_STRING VARIABLE EQUAL stringExpression
+    | VARIABLE EQUAL stringExpression
+    ;
+stringExpression : STRING_LITERAL | VARIABLE;
+
+/* variavel list */
+listDeclarationStatement
+    : VAR_LIST VARIABLE EQUAL listExpression
+    | VAR_LIST VARIABLE EQUAL listExpression
+    ;
+listExpression
+    : OPEN_BRACKET (listIntegerExpression | listBooleanExpression | listRealExpression | listStringExpression | listListExpression | VARIABLE)* CLOSE_BRACKET
+    | VARIABLE
+    ;
+listIntegerExpression
+    : NUMBER COMMA
+    | VARIABLE COMMA;
+listRealExpression
+    : NUMBER_POINT COMMA
+    | VARIABLE COMMA;
+listStringExpression
+    : STRING_LITERAL COMMA
+    | VARIABLE COMMA;
+listBooleanExpression
+    : BOLEANA_LITERAL COMMA
+    | VARIABLE COMMA;
+listListExpression
+    : listExpression COMMA
+    | VARIABLE
+    ;
+
 /* variavel boleana */
 booleanDeclarationStatement
     : VAR_BOOLEAN VARIABLE EQUAL booleanExpression

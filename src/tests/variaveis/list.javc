@@ -1,0 +1,9 @@
+list a = b;
+list a = [b];
+list a = [b,1,];
+list b = [0,1,2,3,4,5,];
+list c = [1.1,1.2,1.3,];
+list nome = ["ana","bob",];
+list sinais = [true,false];
+
+list matrix = [ [1,1,] ,[1.2,2.3,] , ["bobo","obob",], ];
