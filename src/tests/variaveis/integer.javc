@@ -1,0 +1,7 @@
+integer a = 1;
+integer a = 1 + 1;
+integer a = 1 - 1 * 1 / 1;
+integer a = 1 + ( 1 + 1) - 1;
+integer a = a + a + 1 + (1 + 1 + (a));
+integer a = (((1+1)));
+integer a = (a + ((((1)))) );

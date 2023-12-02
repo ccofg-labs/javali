@@ -1,4 +1,4 @@
-lista frutas = ["Acai","Pera,"Melao"];
-para cadeia fruta em frutas {
+list frutas = ["Acai","Pera,"Melao",];
+for string fruta em frutas {
     mostre(fruta);
 }

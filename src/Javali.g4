@@ -6,87 +6,40 @@ statement
     ;
 varibleDeclarationStatement
     : integerDeclationStatement
-    | floatDeclarationStatement
-    | booleanDeclarationStatement
-    | stringDeclarationStatement
-    | listDeclarationStatement
+    | realDeclarationStatement
     ;
-/* variavel interira */
-integerDeclationStatement
-    : ID EQUAL integerExpression
-    | INTEGER ID EQUAL integerExpression
+/* varivel real */
+realDeclarationStatement
+    : VAR_REAL VARIABLE EQUAL realExpression
+    | VARIABLE EQUAL realExpression
     ;
-integerExpression
-    : NUMBER
-    | ID
-    | integerExpression ( MULTIPLICATION | DIVISION | ADDITION | SUBTRATION ) integerExpression
-    | OPEN_PARENTHESES integerExpression CLOSE_PARENTHESES
-    ;
-/* variavel real */
-floatDeclarationStatement
-    : ID EQUAL floatExpression
-    | DOUBLE ID EQUAL floatExpression
-    ;
-
-floatExpression
-    : NUMBER_POINT
+realExpression
+    :OPEN_PARENTHESES realExpression CLOSE_PARENTHESES
+    | realExpression arithmeticOperator realExpression
     | NUMBER
-    | ID
-    | floatExpression ( MULTIPLICATION | DIVISION | ADDITION | SUBTRATION ) floatExpression
-    | OPEN_PARENTHESES floatExpression CLOSE_PARENTHESES
+    | NUMBER_POINT
+    | VARIABLE
     ;
-/* variveis boleana */
+/* variavel integer */
+integerDeclationStatement
+    : VARIABLE EQUAL integerExpression
+    | VAR_INTEGER VARIABLE EQUAL integerExpression
+    ;
+/* expressao aritmetrica com integer */
 
-booleanDeclarationStatement
-    : ID EQUAL booleanExpression
-    | BOOLEAN ID EQUAL booleanExpression
-    ;
-booleanExpression
-    : NOT? BOLEANA_LITERAL
-    | booleanBlock
-    ;
-booleanBlock:
-    | ID
-    | NOT? BOLEANA_LITERAL
-    | NOT? (ID | BOLEANA_LITERAL) (AND | OR | LESS_THAN | GREATER_THAN | LESSEQUAL | GREATEREQUAL | LESSEQUAL | NOTEQUALTO | EQUALTO) NOT? (ID | BOLEANA_LITERAL)
-    | OPEN_PARENTHESES booleanBlock CLOSE_PARENTHESES
-    ;
-/*
-* varivel string
-*/
-stringDeclarationStatement
-    : ID EQUAL stringExpression
-    | STRING ID EQUAL stringExpression
-    | STRING ID EQUAL ID
-    ;
-stringExpression: STRING_LITERAL;
-/*
-*   variavel lista
-*/
-
-listDeclarationStatement
-    : LIST ID EQUAL listExpression
-    | ID EQUAL listExpression
-    ;
-listExpression
-    : OPEN_BRACKET listElement* CLOSE_BRACKET
-    | OPEN_BRACKET ID CLOSE_BRACKET
-    | OPEN_BRACKET ID COMMA listExpression CLOSE_BRACKET
-    | listExpression COMMA listExpression
-    ;
-listElement
-    : NUMBER COMMA
-    | NUMBER_POINT COMMA
-    | STRING_LITERAL COMMA
-    | BOLEANA_LITERAL COMMA
+integerExpression
+    : OPEN_PARENTHESES integerExpression CLOSE_PARENTHESES
+    | integerExpression arithmeticOperator integerExpression
+    | VARIABLE
+    | NUMBER
     ;
 
-ifStatement: IF OPEN_PARENTHESES booleanBlock CLOSE_PARENTHESES OPEN_KEY statement? CLOSE_KEY elseIfStatement* elseStatement?;
-elseIfStatement: ELSEIF OPEN_PARENTHESES booleanBlock CLOSE_PARENTHESES OPEN_KEY statement* CLOSE_KEY;
-elseStatement: ELSE OPEN_KEY statement* CLOSE_KEY;
-
-whileStatement:   OPEN_PARENTHESES booleanBlock CLOSE_PARENTHESES OPEN_KEY statement?  CLOSE_KEY;
-forStatement: FOR;
+arithmeticOperator
+    : OP_ADDITION
+    | OP_SUBTRATION
+    | OP_MULTIPLICATION
+    | OP_DIVISION
+    ;
 /*--------------------------------------------------------------------------------*/
     WS
         : [ \t\r\n]+ -> channel(HIDDEN)
@@ -103,27 +56,22 @@ forStatement: FOR;
 * Lexer Rules
 */
 
-NUMBER : DIGIT+ ;
-NUMBER_POINT : DIGIT+'.'DIGIT+ ;
-BOLEANA_LITERAL : TRUE| FALSE ;
-STRING_LITERAL: '"'(~["\\\r\n])* '"';
-
 /*
 * variables
 */
-    INTEGER:  'integer';
-    DOUBLE: 'real';
-    STRING: 'string';
-    LIST: 'list';
-    BOOLEAN: 'boolean';
+    VAR_INTEGER:  'integer';
+    VAR_REAL: 'real';
+    VAR_STRING: 'string';
+    VAR_LIST: 'list';
+    VAR_BOOLEAN: 'boolean';
 
 /*
 * operadores aritmetricos
 */
-    ADDITION: '+';
-    SUBTRATION: '-';
-    DIVISION: '/';
-    MULTIPLICATION: '*';
+    OP_ADDITION: '+';
+    OP_SUBTRATION: '-';
+    OP_DIVISION: '/';
+    OP_MULTIPLICATION: '*';
 
 /*
 * operadores atribuicao
@@ -162,10 +110,16 @@ STRING_LITERAL: '"'(~["\\\r\n])* '"';
     COMMA: ',';
 
 /*
-*   Idenficadores
+*   geração de variveis
 */
 
-ID : [A-Za-z][0-9A-Za-z]*;
+VARIABLE : LETTER (LETTER | DIGIT)*; // identificador
+NUMBER : DIGIT+ ; // valor literal de numeros inteiros
+NUMBER_POINT : DIGIT+'.'DIGIT+ ; // valor literal de real
+BOLEANA_LITERAL : TRUE| FALSE ;
+STRING_LITERAL: '"'(~["\\\r\n])* '"';
+
+fragment LETTER : [a-zA-Z];
 fragment DIGIT: [0-9];
 fragment TRUE: 'true';
 fragment FALSE: 'false';
