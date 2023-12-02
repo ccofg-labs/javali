@@ -1,3 +1,0 @@
-real soma(inteiro a, inteiro b){
-    retonar a + b
-}

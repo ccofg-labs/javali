@@ -5,13 +5,13 @@ statement
     : varibleDeclarationStatement SEMICOLUN
     | functionStatement
     | pointerStatement SEMICOLUN
-    /*| ifStatement*/
+    | ifStatement
     ;
 /* estrutura if */
 
-/*ifStatement: if_s OPEN_PARENTHESES booleanExpression CLOSE_PARENTHESES OPEN_KEY statement* CLOSE_KEY ;
-if_s: IF;
-*/
+ifStatement: IF OPEN_PARENTHESES booleanExpression CLOSE_PARENTHESES OPEN_KEY statement* CLOSE_KEY elseIfStatement? elseIfStatement?;
+elseIfStatement: ELSEIF OPEN_PARENTHESES booleanExpression CLOSE_PARENTHESES statement* OPEN_KEY CLOSE_KEY;
+elseStatement: ELSE OPEN_KEY statement* CLOSE_KEY;
 
 /* variveis ponteiro */
 
