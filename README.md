@@ -10,7 +10,3 @@
 ### arquivo fonte em extensão txt
 
 - Javali.txt
-
-### classes e tokiens
-
-- pasta gen
