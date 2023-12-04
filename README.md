@@ -1,6 +1,6 @@
 <!-- Logo/Banner do Projeto -->
 <p style="text-align:center;">
-  <img src="https://github.com/ccofg-labs/Pytanga/blob/main/pytanga%20logo/pytanga-logo%20(8).png?raw=true" alt="Logo" width="auto" height="150">
+  <img src="https://github.com/ccofg-labs/javali/blob/main/logo/javali.jpeg?raw=true" align="center alt="Logo" width="auto" height="150">
   <h1 align="center">Compilador Java.li (Alpha 1.0)</h1>
   
   <p style="text-align:center;">
